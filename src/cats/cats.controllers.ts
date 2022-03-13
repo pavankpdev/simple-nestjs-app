@@ -1,6 +1,9 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
-@Controller('cars')
+// DTO
+import { CreateCatDto } from './create-cat.dto';
+
+@Controller('cats')
 export class CatsControllers {
   @Get()
   findAll(): string {
@@ -10,5 +13,10 @@ export class CatsControllers {
   @Get(':id')
   findById(@Param('id') id: string): string {
     return `The cat id is ${id}`;
+  }
+
+  @Post('new')
+  createNewCat(@Body() createCatDto: CreateCatDto) {
+    return `Yo cat is created!`;
   }
 }
